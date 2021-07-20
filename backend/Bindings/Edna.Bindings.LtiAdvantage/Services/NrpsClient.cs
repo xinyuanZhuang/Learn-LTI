@@ -93,6 +93,7 @@ namespace Edna.Bindings.LtiAdvantage.Services
             int count = 0;
             foreach (Member m in allMembers) {
                 count ++;
+                m.Email = "zisen@ucltitest.onmicrosoft.com";
                 _logger.LogInformation("No." + count + " Member UserId = " + m.UserId);
                 _logger.LogInformation("No." + count + " Member Email = " + m.Email);
                 _logger.LogInformation("********************");
