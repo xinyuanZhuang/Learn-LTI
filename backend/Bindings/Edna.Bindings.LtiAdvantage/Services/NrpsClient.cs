@@ -102,6 +102,7 @@ namespace Edna.Bindings.LtiAdvantage.Services
                 }
                 break;
             }
+            _logger.LogInformation("The email has been forced to the user correct email.");
             
             return allMembers.FirstOrDefault(member => userEmails.Any(userEmail => (member.Email??String.Empty).Equals(userEmail, StringComparison.OrdinalIgnoreCase)));
         }
