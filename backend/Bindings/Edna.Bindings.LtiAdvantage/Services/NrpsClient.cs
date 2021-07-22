@@ -93,10 +93,13 @@ namespace Edna.Bindings.LtiAdvantage.Services
             
             _logger.LogInformation("Hello I will change one email! 2021/07/22 Changed.");
             foreach (Member m in allMembers) {
-                m.Email = userEmails.First();
-                _logger.LogInformation("No." + count + " Member UserId = " + m.UserId);
-                _logger.LogInformation("No." + count + " Member Email = " + m.Email);
-                _logger.LogInformation("********************");
+                foreach (string s in userEmails) {
+                    m.Email = s;
+                    _logger.LogInformation("Member UserId = " + m.UserId);
+                    _logger.LogInformation("Member Email = " + m.Email);
+                    _logger.LogInformation("********************");
+                    break;
+                }
                 break;
             }
             
