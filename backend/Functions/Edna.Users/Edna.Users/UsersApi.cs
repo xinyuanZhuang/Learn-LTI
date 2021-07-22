@@ -77,8 +77,13 @@ namespace Edna.Users
             Member member = await nrpsClient.GetByEmail(platform.ClientId, platform.AccessTokenUrl, assignment.ContextMembershipsUrl, userEmails);
             // Member member = await nrpsClient.GetById(platform.clientId, platform.AccessTokenUrl, assignment.ContextMembershipUrl, ***string userId***);
 
-            if (member == null)
+            if (member == null) {
                 _logger.LogError("User not enrolled.");
+            } else {
+                _logger.LogInformation($"Catched user id = '{member.UserId}'.");
+                _logger.LogInformation($"Catched user email = '{member.Email}'.");
+            }    
+                
 
             return new OkObjectResult(_mapper.Map<MemberDto>(member));
         }
