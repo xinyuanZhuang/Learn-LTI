@@ -92,16 +92,21 @@ namespace Edna.Bindings.LtiAdvantage.Services
             IEnumerable<Member> allMembers = await Get(clientId, tokenUrl, membershipUrl);
             
             _logger.LogInformation("Hello I will change one email! 2021/07/22 Changed.");
+            
+            int count = 0;
             foreach (Member m in allMembers) {
-                foreach (string s in userEmails) {
-                    m.Email = s;
-                    _logger.LogInformation("Member UserId = " + m.UserId);
-                    _logger.LogInformation("Member Email = " + m.Email);
-                    _logger.LogInformation("********************");
-                    break;
+                if (count == 1) {
+                    foreach (string s in userEmails) {
+                        m.Email = s;
+                        break;
+                    }
                 }
-                break;
+                count ++;
+                _logger.LogInformation("Member UserId = " + m.UserId);
+                _logger.LogInformation("Member Email = " + m.Email);
+                _logger.LogInformation("********************");
             }
+            
             _logger.LogInformation("The email has been forced to the user correct email.");
             
             return allMembers.FirstOrDefault(member => userEmails.Any(userEmail => (member.Email??String.Empty).Equals(userEmail, StringComparison.OrdinalIgnoreCase)));
